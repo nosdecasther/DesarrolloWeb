@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+		<h1
+			class="text-secundary border border-primary border-top-0 border-left-0 border-right-0"
+			th:text="${titulo}"></h1>
+	</div>
+	<div class="container">
+		<div class="card bg-dark text-white">
+
+			<div class="card-body">
+				<form th:action="@{/nuevo-cliente}" th:object="${cliente}"
+					method="post" enctype="multipart/form-data">
+
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Nombres</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{nombre}" class="form-control"
+								required placeholder="Nombres Cliente" />
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Apellidos</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{apellido}" class="form-control" />
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Direccion</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{direccion}" class="form-control" />
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Telefono</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{telefono}" class="form-control" />
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Fecha Nacimiento</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{fechaNacimiento}"
+								placeholder="DD-MM-YYYY" class="form-control" />
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Email</label>
+						<div class="col-sm-6">
+							<input type="email" th:field="*{email}" class="form-control" />
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Pais</label>
+						<div class="col-sm-6">
+							<select>
+								<option th:each="pais : ${paises}"
+									th:value="${pais.name}" th:text="${pais.name}"></option>
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="file" class="col-sm-2 col-form-label">Foto</label>
+						<div class="col-sm-6">
+							<input type="file" name="file" class="form-control" />
+						</div>
+					</div>
+
+					<input type="hidden" th:field="*{id}" />
+
+					<div class="form-group">
+						<div class="col-sm-6">
+							<input type="submit" value="Guardar" class="btn btn-secondary" />
+						</div>
+					</div>
+
+
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

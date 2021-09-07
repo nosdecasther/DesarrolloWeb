@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<img th:if="${cliente.foto != null}"
+					class="img-thumbnail rounded float-left" style="max-width: 25%;"
+					th:src="@{'/uploads/' + ${cliente.foto}}" th:alt="${cliente.foto}" />
+
+				<ul class="list-group">
+					<li class="list-group-item active" th:text="${cliente.nombre}"></li>
+					<li class="list-group-item" th:text="${cliente.apellido}"></li>
+					<li class="list-group-item" th:text="${cliente.direccion}"></li>
+					<li class="list-group-item" th:text="${cliente.fechaNacimiento}"></li>
+					<li class="list-group-item" th:text="${cliente.telefono}"></li>
+					<li class="list-group-item" th:text="${cliente.email}"></li>
+				</ul>
+
+			</div>
+		</div>
+		
+		<a class="btn btn-danger btn-xs float-right" th:href="@{'/detalle-cliente/' + ${cliente.id}(format=pdf)}">PDF</a>
+		<a class="btn btn-success btn-xs float-right" th:href="@{'/detalle-cliente/' + ${cliente.id}(format=xlsx)}">EXCEL</a>
+	</div>
+	
+	
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
